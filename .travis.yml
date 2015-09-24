@@ -24,8 +24,6 @@ addons:
     apt:
         packages:
             - sshpass
-addons:
-   ssh_known_hosts: $DEPLOY_HOST
 
 after_success:
     - export SSHPASS=$DEPLOY_PASS
