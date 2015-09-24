@@ -24,7 +24,8 @@ addons:
     apt:
         packages:
             - sshpass
+    ssh_known_hosts: $DEPLOY_HOST
 
 after_success:
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e ssh -o "StrictHostKeyChecking"=no $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+    - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
