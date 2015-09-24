@@ -26,5 +26,7 @@ addons:
             - sshpass
 
 after_success:
-    - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e ssh -o "StrictHostKeyChecking"=no $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+    - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+        export SSHPASS=$DEPLOY_PASS;
+        sshpass -e ssh -o "StrictHostKeyChecking"=no $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh;
+      fi
