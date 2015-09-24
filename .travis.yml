@@ -25,8 +25,8 @@ addons:
         packages:
             - sshpass
     ssh_known_hosts:
-        - DEPLOY_HOST
+        - $DEPLOY_HOST
 
 after_success:
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST nohup $DEPLOY_PATH/deploy.sh > out.log 2> err.log < /dev/null &
+    - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
