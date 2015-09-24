@@ -20,4 +20,4 @@ addons:
             - sshpass
 
 after_success:
-    - '[ "$TRAVIS_BRANCH" == "master" ] && sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+    - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
