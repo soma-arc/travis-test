@@ -21,6 +21,7 @@ env:
         - ROSWELL_INSTALL_DIR=$HOME/.roswell
 
 addons:
+    ssh_known_hosts: $DEPLOY_HOST
     apt:
         packages:
             - sshpass
