@@ -21,7 +21,6 @@ env:
         - ROSWELL_INSTALL_DIR=$HOME/.roswell
 
 addons:
-    ssh_known_hosts: $DEPLOY_HOST
     apt:
         packages:
             - sshpass
@@ -29,5 +28,5 @@ addons:
 after_success:
     - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
         export SSHPASS=$DEPLOY_PASS;
-        sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh 1>/dev/null 2>/dev/null;
+        sshpass -e ssh -o "StrictHostKeyChecking"=no $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh 1>/dev/null 2>/dev/null;
       fi
