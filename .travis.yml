@@ -29,5 +29,5 @@ addons:
 after_success:
     - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
         export SSHPASS=$DEPLOY_PASS;
-        echo $DEPLOY_PASS | sshpass -e ssh -p $DEPLOY_PORT -o "StrictHostKeyChecking"=no $DEPLOY_USER@$DEPLOY_HOST "cat | sudo -S $DEPLOY_PATH/deploy.sh 1>/dev/null 2>/dev/null";
+        sshpass -e echo $DEPLOY_PASS | ssh -p $DEPLOY_PORT -o "StrictHostKeyChecking"=no $DEPLOY_USER@$DEPLOY_HOST "cat | sudo -S $DEPLOY_PATH/deploy.sh 1>/dev/null 2>/dev/null";
       fi
